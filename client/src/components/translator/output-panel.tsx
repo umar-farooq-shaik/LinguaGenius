@@ -128,7 +128,7 @@ export default function OutputPanel({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-primary btn-hover-effect"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect whitespace-nowrap"
                   onClick={handleDownload}
                   disabled={!outputText.trim()}
                 >
@@ -145,7 +145,7 @@ export default function OutputPanel({
       </div>
 
       <div className="relative flex-1 min-h-[200px]">
-        <Card className="w-full h-full min-h-[220px] p-4 bg-background border rounded-md overflow-auto">
+        <Card className="w-full h-full min-h-[220px] p-4 bg-gray-50 dark:bg-background border rounded-md overflow-auto">
           {outputText ? (
             <p className="font-sans leading-relaxed whitespace-pre-wrap">{outputText}</p>
           ) : (
@@ -156,7 +156,7 @@ export default function OutputPanel({
         </Card>
         
         {outputText && (
-          <div className="absolute bottom-2 right-3 text-xs bg-background/80 text-muted-foreground px-2 py-1 rounded-full">
+          <div className="absolute bottom-2 right-3 text-xs bg-white/90 dark:bg-background/80 text-muted-foreground px-2 py-1 rounded-full">
             {outputText.length} characters
           </div>
         )}

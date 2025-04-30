@@ -149,7 +149,7 @@ export default function InputPanel({
         </div>
       </div>
 
-      <div className="relative flex-1 min-h-[200px] bg-background rounded-md border">
+      <div className="relative flex-1 min-h-[200px] bg-gray-50 dark:bg-background rounded-md border">
         <Textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
