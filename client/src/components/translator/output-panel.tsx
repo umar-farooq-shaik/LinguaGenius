@@ -3,6 +3,7 @@ import LanguageSelect from "@/components/ui/language-select";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { VolumeIcon, DownloadIcon, ClipboardIcon, Share2Icon } from "lucide-react";
 
 interface OutputPanelProps {
   outputText: string;
@@ -69,26 +70,30 @@ export default function OutputPanel({
   };
 
   return (
-    <div className="flex-1 flex flex-col">
-      <div className="flex justify-between items-center mb-2">
-        <LanguageSelect
-          value={outputLanguage}
-          onChange={setOutputLanguage}
-          disabled={false}
-          includeAuto={false}
-        />
-        <div className="flex items-center gap-2">
+    <div className="flex-1 flex flex-col p-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+        <div className="w-full sm:w-auto">
+          <LanguageSelect
+            value={outputLanguage}
+            onChange={setOutputLanguage}
+            disabled={false}
+            includeAuto={false}
+          />
+        </div>
+        
+        <div className="flex items-center gap-1">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground hover:text-primary"
+                  size="sm"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect"
                   onClick={handleTextToSpeech}
                   disabled={!outputText.trim()}
                 >
-                  <i className="ri-volume-up-line text-xl"></i>
+                  <VolumeIcon className="h-4 w-4 mr-1" />
+                  <span className="text-xs">Listen</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -102,16 +107,17 @@ export default function OutputPanel({
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground hover:text-primary"
-                  onClick={handleDownload}
+                  size="sm"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect"
+                  onClick={handleCopy}
                   disabled={!outputText.trim()}
                 >
-                  <i className="ri-download-line text-xl"></i>
+                  <ClipboardIcon className="h-4 w-4 mr-1" />
+                  <span className="text-xs">Copy</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Download translation</p>
+                <p>Copy to clipboard</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -121,16 +127,17 @@ export default function OutputPanel({
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground hover:text-primary"
-                  onClick={handleCopy}
+                  size="sm"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect"
+                  onClick={handleDownload}
                   disabled={!outputText.trim()}
                 >
-                  <i className="ri-clipboard-line text-xl"></i>
+                  <DownloadIcon className="h-4 w-4 mr-1" />
+                  <span className="text-xs">Download</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Copy to clipboard</p>
+                <p>Download translation</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -138,14 +145,56 @@ export default function OutputPanel({
       </div>
 
       <div className="relative flex-1 min-h-[200px]">
-        <Card className="font-mono w-full h-full min-h-[200px] p-4 bg-accent overflow-auto">
-          {outputText || (
-            <span className="text-muted-foreground">Translation will appear here</span>
+        <Card className="w-full h-full min-h-[220px] p-4 bg-background border rounded-md overflow-auto">
+          {outputText ? (
+            <p className="font-sans leading-relaxed whitespace-pre-wrap">{outputText}</p>
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <span className="text-muted-foreground text-sm">Translation will appear here</span>
+            </div>
           )}
         </Card>
-        <div className="absolute bottom-2 right-2 text-xs text-muted-foreground">
-          {outputText.length} characters
-        </div>
+        
+        {outputText && (
+          <div className="absolute bottom-2 right-3 text-xs bg-background/80 text-muted-foreground px-2 py-1 rounded-full">
+            {outputText.length} characters
+          </div>
+        )}
+        
+        {outputText && (
+          <div className="absolute top-3 right-3">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full text-accent-foreground hover:text-primary hover:bg-muted btn-hover-effect"
+                    onClick={() => {
+                      const shareData = {
+                        title: 'LinguaGenius Translation',
+                        text: outputText,
+                      };
+                      
+                      if (navigator.share && navigator.canShare(shareData)) {
+                        navigator.share(shareData)
+                          .then(() => showNotification("Shared successfully", "ri-share-line"))
+                          .catch(() => showNotification("Failed to share", "ri-error-warning-line"));
+                      } else {
+                        handleCopy();
+                      }
+                    }}
+                  >
+                    <Share2Icon className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Share translation</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        )}
       </div>
     </div>
   );
