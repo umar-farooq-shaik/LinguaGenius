@@ -111,41 +111,54 @@ export default function Translator() {
   };
 
   return (
-    <div>
-      <div className="flex flex-col lg:flex-row gap-6">
-        <InputPanel
-          inputText={inputText}
-          setInputText={setInputText}
-          inputLanguage={inputLanguage}
-          setInputLanguage={setInputLanguage}
-          autoDetect={autoDetect}
-          setAutoDetect={setAutoDetect}
-          clearInput={clearInput}
-          showNotification={showNotification}
-        />
+    <div className="container mx-auto px-4 py-6 max-w-7xl">
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-2 gradient-text">Universal Text Translator</h2>
+        <p className="text-muted-foreground">Translate text between 100+ languages with advanced AI technology</p>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-8">
+        <div className="lg:col-span-3 translator-panel">
+          <InputPanel
+            inputText={inputText}
+            setInputText={setInputText}
+            inputLanguage={inputLanguage}
+            setInputLanguage={setInputLanguage}
+            autoDetect={autoDetect}
+            setAutoDetect={setAutoDetect}
+            clearInput={clearInput}
+            showNotification={showNotification}
+          />
+        </div>
 
-        <ControlPanel
-          onTranslate={handleTranslate}
-          onSwapLanguages={swapLanguages}
-          isTranslating={isTranslating}
-        />
+        <div className="lg:col-span-1 flex lg:flex-col justify-center items-center">
+          <ControlPanel
+            onTranslate={handleTranslate}
+            onSwapLanguages={swapLanguages}
+            isTranslating={isTranslating}
+          />
+        </div>
 
-        <OutputPanel
-          outputText={outputText}
-          outputLanguage={outputLanguage}
-          setOutputLanguage={setOutputLanguage}
-          showNotification={showNotification}
-        />
+        <div className="lg:col-span-3 translator-panel">
+          <OutputPanel
+            outputText={outputText}
+            outputLanguage={outputLanguage}
+            setOutputLanguage={setOutputLanguage}
+            showNotification={showNotification}
+          />
+        </div>
       </div>
 
       {/* Translation History */}
       {translationHistory.length > 0 && (
-        <HistoryPanel 
-          history={translationHistory.slice(0, 5)}
-          onRestore={restoreTranslation}
-          onRemove={removeHistoryItem}
-          onClearAll={clearHistory}
-        />
+        <div className="translator-panel p-4">
+          <HistoryPanel 
+            history={translationHistory.slice(0, 5)}
+            onRestore={restoreTranslation}
+            onRemove={removeHistoryItem}
+            onClearAll={clearHistory}
+          />
+        </div>
       )}
 
       {/* Toast Notification */}
