@@ -81,18 +81,18 @@ export default function OutputPanel({
           />
         </div>
         
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-primary btn-hover-effect"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect px-1.5"
                   onClick={handleTextToSpeech}
                   disabled={!outputText.trim()}
                 >
-                  <VolumeIcon className="h-4 w-4 mr-1" />
+                  <VolumeIcon className="h-4 w-4 mr-0.5" />
                   <span className="text-xs">Listen</span>
                 </Button>
               </TooltipTrigger>
@@ -108,11 +108,11 @@ export default function OutputPanel({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-primary btn-hover-effect"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect px-1.5"
                   onClick={handleCopy}
                   disabled={!outputText.trim()}
                 >
-                  <ClipboardIcon className="h-4 w-4 mr-1" />
+                  <ClipboardIcon className="h-4 w-4 mr-0.5" />
                   <span className="text-xs">Copy</span>
                 </Button>
               </TooltipTrigger>
@@ -128,11 +128,11 @@ export default function OutputPanel({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-primary btn-hover-effect whitespace-nowrap"
+                  className="text-muted-foreground hover:text-primary btn-hover-effect whitespace-nowrap px-1.5"
                   onClick={handleDownload}
                   disabled={!outputText.trim()}
                 >
-                  <DownloadIcon className="h-4 w-4 mr-1" />
+                  <DownloadIcon className="h-4 w-4 mr-0.5" />
                   <span className="text-xs">Download</span>
                 </Button>
               </TooltipTrigger>
