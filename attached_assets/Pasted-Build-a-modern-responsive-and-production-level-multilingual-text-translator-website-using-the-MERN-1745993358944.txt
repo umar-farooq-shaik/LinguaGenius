@@ -1,0 +1,79 @@
+Build a modern, responsive, and production-level multilingual text translator website using the MERN stack (MongoDB, Express.js, React.js, Node.js) and Google Gemini API (e.g., Gemini 1.5 or Pro).
+The website must not include user authentication.
+💻 UI & Layout Specifications
+
+    Two-panel layout (side-by-side):
+
+        Left Panel:
+
+            Textarea for input.
+
+            Dropdown to select the input language.
+
+            A toggle or checkbox to enable Auto-detect language (via Gemini).
+
+            A microphone icon to use speech-to-text input.
+
+        Right Panel:
+
+            Read-only box to show translated output.
+
+            Dropdown for selecting the target/output language.
+
+            A speaker icon to trigger text-to-speech.
+
+            A Download button to save the translated text as a .txt file.
+
+    Control buttons between panels:
+
+        Translate
+
+        Swap Languages
+
+        Dark/Light Mode Toggle (top-right)
+
+    Use Tailwind CSS or Material UI to create a mobile-friendly, clean, and polished design.
+
+⚙️ Functional Features
+
+    AI-Powered Translation:
+
+        Use Google Gemini API for:
+
+            Language detection (if auto-detect is enabled)
+
+            Translation from selected input to selected output language
+
+    Speech Support:
+
+        Speech-to-text input using the Web Speech API
+
+        Text-to-speech playback for both input and output (e.g., using browser TTS or external API)
+
+    Download Support:
+
+        Users can download translated output as a .txt file with a single click
+
+    Local Translation History:
+
+        Store and display recent translations (e.g., last 10) using local storage
+
+        Include timestamps and source/target language info
+
+    Optional Stats Dashboard:
+
+        Simple section showing:
+
+            Total number of translations
+
+            Most common language pairs
+
+🧰 Tech Stack
+
+    Frontend: React.js, Tailwind CSS or Material UI
+
+    Backend: Node.js, Express.js
+
+    API Integration: Google Gemini API (for language detection and translation), optional: Web Speech API for TTS/STT
+
+    Database (Optional): MongoDB (only for storing stats or persistent translation logs if needed)
