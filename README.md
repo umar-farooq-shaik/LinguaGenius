@@ -1,7 +1,7 @@
 # LinguaGenius Translator
 
 LinguaGenius Translator is a modern, responsive, and multilingual text translator website built using the MERN stack (MongoDB, Express.js, React.js, Node.js) and the Google Gemini API. It supports AI-powered translation, speech-to-text, text-to-speech, and translation history.
-![LinguaGenius Banner](https://drive.google.com/file/d/1kvWaF7eWum91IDIHbST4bAFJXp7eC-aJ/view?usp=sharing)
+![LinguaGenius Banner](https://drive.google.com/file/d/1kvWaF7eWum91IDIHbST4bAFJXp7eC-aJ/view?usp=drive_link)
 ## Features
 
 ### Functional Features
